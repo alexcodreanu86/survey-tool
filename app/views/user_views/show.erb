@@ -5,3 +5,10 @@
 <a href="/surveys/new">Create Survey</a>
 
 <a href="/surveys/index">All Surveys</a>
+
+
+<ul>
+  <% @surveys.each do |survey| %>
+        <li><%= survey.title %></li> <a href="/surveys/edit/<%= survey.id %>"><button >Edit</button></a>
+  <% end %>
+</ul>

@@ -54,7 +54,7 @@ post '/surveys/submit/:survey_id' do
     params[:survey].each do |quest_id, answer|
       Response.create(user_id: session[:user_id], question_id: quest_id, content: answer)
     end
-    redirect to('/')
+    redirect to("/user/#{current_user?}")
   end
 end
 
