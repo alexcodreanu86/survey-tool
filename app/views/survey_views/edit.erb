@@ -1,5 +1,6 @@
 <h1>Survey edit</h1>
 
+
 <form action="/surveys/edit" method="post">
   <label for="title">Title: </label>
   <input type="text" id="title" name="survey[title]" value="<%= @survey.title%>">
@@ -18,4 +19,10 @@
   </select>
   <input type="submit" id="survey_submit" value="Run that shit">
 
+</form>
+
+
+<form action="/surveys/delete" method="post">
+  <input type="submit" id="delete_submit" value="DELETE POST!">
+  <input type="hidden" name="survey_id" value="<%= @survey.id%>">
 </form>
