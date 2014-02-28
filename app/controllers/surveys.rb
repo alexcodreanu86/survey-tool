@@ -1,11 +1,12 @@
 get "/surveys/participate/:survey_id" do
+  redirect to "/" if !current_user?
   @survey = Survey.find(params[:survey_id])
   @questions = @survey.questions
   erb :"survey_views/show"
 end
 
-
 get "/surveys/edit/:survey_id" do
+  redirect to "/" if !current_user?
   @survey = Survey.find(params[:survey_id])
   @questions = @survey.questions
   if session[:user_id] == @survey.user_id
@@ -13,6 +14,19 @@ get "/surveys/edit/:survey_id" do
   else
     redirect to('/')  #user errors
   end
+end
+
+get "/surveys/index" do
+  redirect to "/" if !current_user?
+  @surveys = Survey.all
+  erb :"survey_views/index" 
+end
+
+get '/surveys/new' do
+  redirect to "/" if !current_user?
+  @survey = Survey.create(user_id: session[:user_id], title: "Title", category: params[:category])
+  redirect to("/surveys/edit/#{@survey.id}")
+
 end
 
 post '/surveys/delete' do
@@ -26,15 +40,6 @@ post '/surveys/delete' do
 end
 
 
-post '/surveys/new' do
-  @survey = Survey.new(user_id: session[:user_id], title: "Title", category: params[:category])
-  if @survey.save
-    redirect to("/surveys/edit/#{@survey.id}")
-  else
-    @errors = @survey.errors.messages
-    erb :"surveys_views/new"
-  end
-end
 
 post '/surveys/submit' do
   params[:survey].each do |quest_id, answer|
