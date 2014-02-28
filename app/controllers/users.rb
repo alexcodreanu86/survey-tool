@@ -26,6 +26,7 @@ end
 
 get '/user/:id' do
   @user = User.find(session[:user_id])
+  @surveys = Survey.where(user_id: current_user?)
   redirect to("/") if @user.id != params[:id].to_i
   erb :"user_views/show"
 end
