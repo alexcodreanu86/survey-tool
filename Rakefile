@@ -104,7 +104,7 @@ namespace :generate do
   desc "Creating MVC....and migration...ignore migration at own risk"
   task :scaffold do
     unless ENV.has_key?('NAME')
-      raise "Must specificy model name, e.g., rake generate:model NAME=User"
+      raise "Must specificy model name, e.g., rake generate:scaffold NAME=user"
     end
 
     name     = ENV['NAME'].downcase
