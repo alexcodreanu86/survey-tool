@@ -17,5 +17,8 @@ post '/question/new/:survey_id' do
 end
 
 post '/question/delete/:question_id' do
-  
+   question = Question.find(question_id: params[:question_id])
+   question.destroy
+
+   redirect to '/'
 end
