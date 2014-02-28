@@ -7,6 +7,12 @@ get '/question/new/:survey_id' do
   end
 end
 
+# get '/question/edit/:question_id' do
+#   edit_object = Question.find(params[:question_id])
+#   edit_object.update_attributes(params)
+#   redirect to('/')
+# end
+
 post '/question/new/:survey_id' do 
   q = Question.new({
   	survey_id: params[:survey_id],
@@ -21,7 +27,7 @@ post '/question/new/:survey_id' do
 end
 
 post '/question/delete/:question_id' do
-   question = Question.find(question_id: params[:question_id])
+   question = Question.find(params[:question_id])
    question.destroy
 
    redirect to '/'
