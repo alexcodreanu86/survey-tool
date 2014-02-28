@@ -7,7 +7,11 @@ end
 
 get "/surveys/edit/:survey_id" do
   @survey = Survey.find(params[:survey_id])
-  erb :"survey_views/edit"
+  if session[:user_id] == @survey.user_id
+    erb :"survey_views/edit"
+  else
+    redirect to('/')  #user errors
+  end
 end
 
 get '/surveys/delete/:survey_id' do
