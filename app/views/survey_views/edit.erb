@@ -29,6 +29,7 @@
     <li><%= question.prompt %></li>
   <% end %>
 </ul>
+
 <form action="/surveys/delete" method="post">
   <input type="submit" id="delete_submit" value="DELETE POST!">
   <input type="hidden" name="survey_id" value="<%= @survey.id%>">
