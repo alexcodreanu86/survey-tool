@@ -14,10 +14,14 @@ get "/surveys/edit/:survey_id" do
   end
 end
 
-get '/surveys/delete/:survey_id' do
-  @survey = Survey.find( )
-  @survey.destroy
-  redirect to('/')
+post '/surveys/delete' do
+  @survey = Survey.find(params[:survey_id])
+  if session[:user_id] == @survey.user_id
+    @survey.destroy
+    redirect to("/user/#{session[:user_id]}")
+  else 
+    redirect to('/')
+  end
 end
 
 
