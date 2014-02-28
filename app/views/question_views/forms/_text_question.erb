@@ -1,0 +1,8 @@
+<div class="row">
+	<div class="large-6 large-offset-3 column">
+		<form action="/question/new/<%= params[:survey_id] %>" method="POST">
+			<input type="text" placeholder="Question" name="question[prompt]">
+			<input type="submit" value="Add Question" class="button">
+		</form>
+  </div>
+</div>

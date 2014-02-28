@@ -57,6 +57,66 @@ namespace :generate do
     end
   end
 
+  desc "Create an empty folder in views"
+  task :controller do
+    unless ENV.has_key?('NAME')
+      raise "Must specificy controller name, e.g., rake generate:controller NAME=user"
+    end
+
+    name     = ENV['NAME'].downcase
+    filename = ENV['NAME'].underscore + '.rb'
+    path     = APP_ROOT.join('app', 'controllers', filename)
+
+    if File.exist?(path)
+      raise "ERROR: File '#{path}' already exists"
+    end
+
+    puts "Creating #{path}"
+    File.open(path, 'w+') do |f|
+      f.write(<<-EOF.strip_heredoc)
+        post '/#{name}/new' do
+          new_object = #{name.camelize}.new(params[#{name}])
+          if new_object.save
+            redirect to("/#{name}_views/all")
+          else
+            @errors = #{name}.errors.messages
+            erb :"#{name}_views/new"
+          end
+        end
+        
+        get '/#{name}/edit' do
+          edit_object = #{name.camelize}.find(params[:#{name}_id])
+          edit_object.update_attributes(params)
+          redirect to('/')
+        end
+
+        get '/#{name}/delete' do
+          #{name} = #{name.camelize}.find( )
+          #{name}.destroy
+          redirect to('/')
+        end
+      EOF
+     end
+  end
+
+
+
+  desc "Creating MVC....and migration...ignore migration at own risk"
+  task :scaffold do
+    unless ENV.has_key?('NAME')
+      raise "Must specificy model name, e.g., rake generate:model NAME=User"
+    end
+
+    name     = ENV['NAME'].downcase
+    migration_name = "create_#{ENV['NAME'].downcase.pluralize}"
+
+    puts "Making all the stuff for the #{name} table...sit and relax"
+    exec("mkdir app/views/#{name}_views && touch app/views/#{name}_views/edit.erb && touch app/views/#{name}_views/new.erb && touch app/views/#{name}_views/show.erb && bundle exec rake generate:model NAME=#{name} && bundle exec rake generate:controller NAME=#{name.downcase.pluralize} && bundle exec rake generate:migration NAME=#{migration_name}")
+  end
+
+
+
+
   desc "Create an empty model spec in spec, e.g., rake generate:spec NAME=user"
   task :spec do
     unless ENV.has_key?('NAME')
@@ -86,6 +146,31 @@ namespace :generate do
 end
 
 namespace :db do
+
+  desc "reset the database"
+  task :reset do
+    puts "resetting the frakking db"
+    exec("bundle exec rake db:drop && bundle exec rake db:set")
+  end
+
+  desc "set the database"
+  task :set do
+    puts "Create-Migrate-Seed...ALL AT ONCE"
+    exec("bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed")
+  end
+
+  desc "create/migrate/seed db and open the console"
+  task :conset do
+    puts "setting db and entering console"
+    exec("bundle exec rake db:drop && bundle exec rake console")
+  end
+
+  desc "reset the db and opening the console"
+  task :conreset do
+    puts "resetting the frakking db and entering rake console"
+    exec("bundle exec rake db:reset && bundle exec rake console")
+  end
+
   desc "Create the database at #{DB_NAME}"
   task :create do
     puts "Creating database #{DB_NAME} if it doesn't exist..."
@@ -117,6 +202,16 @@ namespace :db do
     puts "Current version: #{ActiveRecord::Migrator.current_version}"
   end
 end
+
+desc 'Start User-InterRake'
+task "launch" do
+  puts "Table generator...Type 'q' to quit"
+  input = STDIN.gets.chomp
+  exec "echo #{input}"
+  exec "irb -r./config/environment"
+
+end
+
 
 desc 'Start IRB with application environment loaded'
 task "console" do
