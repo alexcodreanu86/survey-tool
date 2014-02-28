@@ -1,12 +1,13 @@
-
-get "/surveys/participant/:survey_id" do
+get "/surveys/participate/:survey_id" do
   @survey = Survey.find(params[:survey_id])
+  @questions = @survey.questions
   erb :"survey_views/show"
 end
 
 
 get "/surveys/edit/:survey_id" do
   @survey = Survey.find(params[:survey_id])
+  @questions = @survey.questions
   if session[:user_id] == @survey.user_id
     erb :"survey_views/edit"
   else
@@ -33,6 +34,13 @@ post '/surveys/new' do
     @errors = @survey.errors.messages
     erb :"surveys_views/new"
   end
+end
+
+post '/surveys/submit' do
+  params[:survey].each do |quest_id, answer|
+    Response.create(user_id: session[:user_id], question_id: quest_id, content: answer)
+  end
+  redirect to('/')
 end
 
 post '/surveys/edit' do
