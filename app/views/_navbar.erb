@@ -1,23 +1,28 @@
 <nav class="top-bar" data-topbar>
-  <ul class="title-area">
+  <!-- <ul class="title-area">
     <li class="name">
-      <h1><a href="/">Title</a></h1>
+      <h1><a href="/">Survey Snake (Alex's)</a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-  </ul>
+  </ul> -->
 
   <section class="top-bar-section">
     <!-- Right Nav Section -->
-    <ul class="right">
+    <!--ul class="right"-->
+    <!-- <ul> -->
+    <ul>
+      <li><a href="/">Home</a></li>
       <% if current_user? %>
-        <li class="has-dropdown">
-          <a href="#"><%= current_user.email %></a>
-          <ul class="dropdown">
+        <!--li class="has-dropdown"-->
+          <!-- <a href="#"><%= current_user.email %></a><ul class="dropdown"> -->
+          
+            <li><a href="/surveys/new">Create Survey</a></li>
+            <li><a href="/surveys/index">All Surveys</a></li>
             <li><a href="/user/<%= current_user.id %>">Profile Page</a></li>
             <li><a href="/user/edit/<%= current_user.id %>">Edit</a></li>
             <li><a href="/user/signout">Sign Out</a></li>
-          </ul>
-        </li>
+          <!-- </ul> -->
+        <!-- </li> -->
       <% else %>
         <li><a href="/user/signin">Sign In</a></li>
       <% end %>
