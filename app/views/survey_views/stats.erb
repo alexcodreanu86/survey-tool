@@ -1,0 +1,12 @@
+<h3><%= @survey.title %> stats:</h3>
+  
+
+  <% @questions.each do |question| %>
+    <p> <%= question.prompt %></p>
+    <p>Anwers:</p>
+    <ul>
+      <% question.responses.each do |response| %>
+        <li><%= response.content %></li>
+      <% end %>
+    </ul>
+  <% end %>
