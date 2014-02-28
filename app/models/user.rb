@@ -16,13 +16,8 @@ class User < ActiveRecord::Base
     self.surveys.each do |survey|
       count += survey.users.count
     end
+    count
   end
-
-  # Look at responses for a specific survey
-
-  # Loot at surverys taken
-
-
 end
 
 
