@@ -1,6 +1,10 @@
 get '/question/new/:survey_id' do
 	
-	erb :"question_views/new"
+  if request.xhr?
+    erb :"question_views/forms/_text_question", layout: false
+  else
+  	erb :"question_views/new"
+  end
 end
 
 post '/question/new/:survey_id' do 
@@ -17,5 +21,8 @@ post '/question/new/:survey_id' do
 end
 
 post '/question/delete/:question_id' do
-  
+   question = Question.find(question_id: params[:question_id])
+   question.destroy
+
+   redirect to '/'
 end
