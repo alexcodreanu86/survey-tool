@@ -1,4 +1,4 @@
-def current_user?
+Usdef current_user?
   session[:user_id]
 end
 

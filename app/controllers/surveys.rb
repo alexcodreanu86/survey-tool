@@ -1,7 +1,11 @@
 get "/surveys/participate/:survey_id" do
-  @survey = Survey.find(params[:survey_id])
-  @questions = @survey.questions
-  erb :"survey_views/show"
+  if session[:user_id]
+    @survey = Survey.find(params[:survey_id])
+    @questions = @survey.questions
+    erb :"survey_views/show"
+  else
+    redirect to('/')
+  end 
 end
 
 
@@ -36,7 +40,8 @@ post '/surveys/new' do
   end
 end
 
-post '/surveys/submit' do
+post '/surveys/submit/:survey_id' do
+  Participation.create(user_id: session[:user_id], survey_id: params[:survey_id])
   params[:survey].each do |quest_id, answer|
     Response.create(user_id: session[:user_id], question_id: quest_id, content: answer)
   end
