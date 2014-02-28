@@ -17,9 +17,12 @@
 </form>
 
 
-<a class="button" href="/question/new/<%= @survey.id %>">Add Question</a>
+<a id="new-question" class="button" href="/question/new/<%= @survey.id %>">Add Question</a>
+<div id="new-question-form">
+  
+</div>
 
-<ul>
+<ul id="question-list">
   <% @questions.each do |question| %>
     <li><%= question.prompt %></li>
   <% end %>
@@ -31,9 +34,26 @@
 </form>
 
 <script>
-  var cat = $("#hidden-category").attr("value");
-  console.log(cat);
-  var option = $("#category").find("option");
-  console.log(option);
+$('#new-question').on('click', function(event){
+  event.preventDefault();
 
+  var url = $(this).attr('href');
+
+  $.get(url, function(serverResponse, status, request){
+    // console.log(serverResponse)
+    $('#new-question-form').html(serverResponse);
+  }, "html");
+
+  $("#new-question-form").on("submit", "#question-form", function(e){
+    e.preventDefault();
+
+    var data = $("#question-form").serialize();  
+    
+    $.post(url, data, function(serverResponse, status, request){
+      var newQuestion = serverResponse.prompt;
+      $("#question-list").append("<li>" + newQuestion + "</li>");
+      $("#new-question-form").empty();
+    }, "json");
+  });
+})
 </script>
