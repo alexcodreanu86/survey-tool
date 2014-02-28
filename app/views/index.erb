@@ -3,3 +3,9 @@
 <% if !current_user? %>
   <a href="/user/signup" class="button">Sign Up!</a>
 <% end %>
+
+<ul>
+  <% @surveys.each do |survey| %>
+      <li><a href="surveys/participate/<%= survey.id %>"><%= survey.title %></a></li> 
+  <% end %>
+</ul>

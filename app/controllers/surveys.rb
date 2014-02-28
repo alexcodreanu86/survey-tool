@@ -1,5 +1,5 @@
 
-get "/surveys/participant/:survey_id" do
+get "/surveys/participate/:survey_id" do
   @survey = Survey.find(params[:survey_id])
   erb :"survey_views/show"
 end
