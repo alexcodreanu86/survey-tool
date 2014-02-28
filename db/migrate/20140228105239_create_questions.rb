@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
   	create_table :questions do |t|
       t.integer :survey_id
       t.string :prompt
-      t.string :type
+      t.string :variety
 
       t.timestamps
   	end
