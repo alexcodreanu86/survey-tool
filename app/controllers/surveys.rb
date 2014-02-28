@@ -41,7 +41,8 @@ end
 
 
 
-post '/surveys/submit' do
+post '/surveys/submit/:survey_id' do
+  Participation.create(user_id: session[:user_id], survey_id: params[:survey_id])
   params[:survey].each do |quest_id, answer|
     Response.create(user_id: session[:user_id], question_id: quest_id, content: answer)
   end
