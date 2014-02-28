@@ -1,23 +1,18 @@
-<h1>Survey edit</h1>
+<h1><%= @survey.title %></h1>
 
 
-<form action="/surveys/edit" method="post">
+<form action="/surveys/edit/<%= @survey.id %>" method="post">
   <label for="title">Title: </label>
   <input type="text" id="title" name="survey[title]" value="<%= @survey.title%>">
-  <input type="hidden" name="survey_id" value="<%= @survey.id%>">
-  <label for="category">Category: (currently is <%= @survey.category %>)</label>
-  <!-- will change to fun if not adjusted. -->
-
-
 
   <select id="category" name="survey[category]">
-    <option value="Fun">Fun</option>
-    <option value="Jimmy">Jimmy</option>
-    <option value="Coding">Coding</option>
-    <option value="Food">Food</option>
-    <option value="Other">Other</option>
+    <option value="Customer Satisfaction" <%= selected("Customer Satisfaction") %>>Customer Satisfaction</option>
+    <option value="Product" <%= selected("Product") %>>Product</option>
+    <option value="Course" <%= selected("Course") %>>Course</option>
+    <option value="Political" <%= selected("Political") %>>Political</option>
+    <option value="Other" <%= selected("Other") %>>Other</option>
   </select>
-  <input type="submit" id="survey_submit" value="Run that shit">
+  <input type="submit" id="survey_submit" value="Edit Survey">
 
 </form>
 
@@ -30,6 +25,14 @@
   <% end %>
 </ul>
 <form action="/surveys/delete" method="post">
-  <input type="submit" id="delete_submit" value="DELETE POST!">
+  <input type="submit" id="delete_submit" value="Delete Survey" class="button alert">
   <input type="hidden" name="survey_id" value="<%= @survey.id%>">
 </form>
+
+<script>
+  var cat = $("#hidden-category").attr("value");
+  console.log(cat);
+  var option = $("#category").find("option");
+  console.log(option);
+
+</script>

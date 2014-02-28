@@ -6,8 +6,8 @@ get "/surveys/participate/:survey_id" do
 end
 
 get "/surveys/edit/:survey_id" do
-  redirect to "/" if !current_user?
   @survey = Survey.find(params[:survey_id])
+  redirect to "/" if !current_user? && current_user.id != @survey.user_id
   @questions = @survey.questions
   if session[:user_id] == @survey.user_id
     erb :"survey_views/edit"
@@ -49,7 +49,7 @@ post '/surveys/submit/:survey_id' do
   redirect to('/')
 end
 
-post '/surveys/edit' do
+post '/surveys/edit/:survey_id' do
   @survey = Survey.find(params[:survey_id])
   if session[:user_id] == @survey.user_id
     @survey.update_attributes(params[:survey])

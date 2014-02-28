@@ -2,21 +2,21 @@ User.create(email: "a@a.com", password: "1234", password_confirmation: "1234")
 User.create(email: "poodle@gmail.com", password: "1234", password_confirmation: "1234")
 User.create(email: "gopher@pain.com", password: "1234", password_confirmation: "1234")
  
-Survey.create(user_id: 1, title: "Favorite Animals", category: "Fun")
+Survey.create(user_id: 1, title: "Favorite Animals", category: "Customer Satisfaction")
 Question.create(survey_id: 1, prompt: "Favorite Snail?")
 Question.create(survey_id: 1, prompt: "Favorite Mammal?")
 Question.create(survey_id: 1, prompt: "Favorite Snake?")
 Question.create(survey_id: 1, prompt: "Favorite Frog?")
 Question.create(survey_id: 1, prompt: "Favorite Peligoose?")
  
-Survey.create(user_id: 1, title: "Meal Times", category: "Food")
+Survey.create(user_id: 1, title: "Meal Times", category: "Product")
 Question.create(survey_id: 2, prompt: "When do you eat dinner?")
 Question.create(survey_id: 2, prompt: "Why do you eat lunch?")
 Question.create(survey_id: 2, prompt: "Lunch or Supper?")
 Question.create(survey_id: 2, prompt: "When is Brunch?")
 Question.create(survey_id: 2, prompt: "What is your problem?")
  
-Survey.create(user_id: 1, title: "TV Shows", category: "Fun")
+Survey.create(user_id: 1, title: "TV Shows", category: "Course")
 Question.create(survey_id: 3, prompt: "Favorite TV Character?")
 Question.create(survey_id: 3, prompt: "Community or Cougar Town?")
 Question.create(survey_id: 3, prompt: "Most Hated TV Show?")
@@ -24,7 +24,7 @@ Question.create(survey_id: 3, prompt: "If you could kill one TV character, who w
 Question.create(survey_id: 3, prompt: "Show you can't live without?")
  
  
-Survey.create(user_id: 2, title: "Alex-Questions", category: "Other")
+Survey.create(user_id: 2, title: "Alex-Questions", category: "Political")
 Question.create(survey_id: 4, prompt: "Your View On Alex's Beard:")
 Question.create(survey_id: 4, prompt: "Where should Alex go?")
 Question.create(survey_id: 4, prompt: "What is your least favorite thing Alex does?")
