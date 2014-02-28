@@ -1,1 +1,9 @@
 <h1>Survey show (take survey)</h1>
+
+<form action="/surveys/submit" method="post">
+  <% @questions.each do |question| %>
+    <label><%= question.prompt %></label>
+    <input class="question_input" type="text" id ="<%=question.id%>" name ="survey[<%=question.id%>]" >
+  <% end %>
+  <input type="submit" id="survey_submit">
+</form>
