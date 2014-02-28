@@ -19,7 +19,11 @@ post '/question/new/:survey_id' do
   	prompt: params[:question][:prompt]
   	})
   if q.save
-    redirect to("/surveys/edit/#{params[:survey_id]}")
+    if request.xhr?
+      return q.to_json
+    else
+      redirect to("/surveys/edit/#{params[:survey_id]}")
+    end
   else
   	@errors = q.errors.messages
   	erb :"question_views/new"
