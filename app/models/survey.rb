@@ -4,5 +4,12 @@ class Survey < ActiveRecord::Base
   has_many :participations
   has_many :users, through: :participations
 
+  def response_users
+  	users = []
+    self.questions.each do |question|
+      users << question.responses.user_id
+    end
+    
+  end
 
 end
