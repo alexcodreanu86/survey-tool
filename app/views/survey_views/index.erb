@@ -1,5 +1,9 @@
 <ul>
   <% @surveys.each do |survey| %>
-      <li><a href="/surveys/participate/<%= survey.id %>"><%= survey.title %></a></li> 
+      <% if has_taken_survey?(survey) %>
+        <li><%= survey.title %>  (already participated)</li>
+      <% else %>
+        <li><a href="/surveys/participate/<%= survey.id %>"><%= survey.title %></a></li> 
+      <% end %>
   <% end %>
 </ul>
