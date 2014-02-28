@@ -1,6 +1,6 @@
-
 get "/surveys/participate/:survey_id" do
   @survey = Survey.find(params[:survey_id])
+  @questions = @survey.questions
   erb :"survey_views/show"
 end
 
@@ -34,6 +34,13 @@ post '/surveys/new' do
     @errors = @survey.errors.messages
     erb :"surveys_views/new"
   end
+end
+
+post '/surveys/submit' do
+  params[:survey].each do |quest_id, answer|
+    Response.create(user_id: session[:user_id], question_id: quest_id, content: answer)
+  end
+  redirect to('/')
 end
 
 post '/surveys/edit' do
