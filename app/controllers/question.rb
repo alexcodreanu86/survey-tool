@@ -13,7 +13,7 @@ post '/question/new/:survey_id' do
   	prompt: params[:question][:prompt]
   	})
   if q.save
-    redirect to('/')
+    redirect to("/surveys/edit/#{params[:survey_id]}")
   else
   	@errors = q.errors.messages
   	erb :"question_views/new"

@@ -7,6 +7,7 @@ end
 
 get "/surveys/edit/:survey_id" do
   @survey = Survey.find(params[:survey_id])
+  @questions = @survey.questions
   if session[:user_id] == @survey.user_id
     erb :"survey_views/edit"
   else
