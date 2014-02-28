@@ -48,13 +48,13 @@ end
 
 post '/user/signin' do
   user = User.find_by_email(params[:email])
-
+  p params
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect to("/user/#{user.id}")
   else
     @errors = {:Invalid=>["Incorrect Login"]}
-    erb :"user_views/sign_in"
+    erb :"user_views/signin"
   end
 end
 
