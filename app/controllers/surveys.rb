@@ -21,7 +21,6 @@ get "/surveys/stats/:survey_id" do
   @survey = Survey.find(params[:survey_id])
   @questions = @survey.questions
   erb :"survey_views/stats"
-
 end
 
 get "/surveys/index" do
