@@ -1,6 +1,6 @@
+<a href="/user/<%= current_user.id %>" class="button">Back</a>
+
 <h1><%= @survey.title %></h1>
-
-
 <form action="/surveys/edit/<%= @survey.id %>" method="post">
   <label for="title">Title: </label>
   <input type="text" id="title" name="survey[title]" value="<%= @survey.title%>">
@@ -44,16 +44,20 @@ $('#new-question').on('click', function(event){
     $('#new-question-form').html(serverResponse);
   }, "html");
 
-  $("#new-question-form").on("submit", "#question-form", function(e){
-    e.preventDefault();
+});
 
-    var data = $("#question-form").serialize();  
-    
-    $.post(url, data, function(serverResponse, status, request){
-      var newQuestion = serverResponse.prompt;
-      $("#question-list").append("<li>" + newQuestion + "</li>");
-      $("#new-question-form").empty();
-    }, "json");
-  });
-})
+$("#new-question-form").on("submit", "#question-form", function(e){
+  e.preventDefault();
+  
+  var url = $("#question-form").attr('action');
+  var data = $("#question-form").serialize();  
+  console.log(url);
+  
+  $.post(url, data, function(serverResponse, status, request){
+    var newQuestion = serverResponse.prompt;
+    console.log(newQuestion)
+    console.log($("#question-list").append("<li>" + newQuestion + "</li>"));
+    $("#new-question-form").empty();
+  }, "json");
+});
 </script>
