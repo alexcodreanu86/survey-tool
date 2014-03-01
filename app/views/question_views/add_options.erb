@@ -1,0 +1,9 @@
+<%= erb :"question_views/forms/_choice_form" %>
+
+<ul>
+<% @question.options.each do |option| %>
+  <li><%= option.content %></li>
+<% end %>
+</ul>
+
+<a href="/surveys/edit/<%= @question.survey.id%>" class="button">Poodle it</a>
