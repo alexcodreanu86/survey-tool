@@ -11,14 +11,9 @@
 </head>
 <body> 
   <%= erb :_navbar %>
-  <header class="site-header">
-    <h1><a href="/">Survey Snake (Alex's)</a></h1>
-  </header>
   <section class="errors"><%= erb :_errors %></section>
   <section class="content" role="main"><%= yield %></section>
-  <footer class="footer">
-    <p>Alex, Cristin, Amara, Matt and Ewik. Copyright &copy; 2014<p>
-  </footer>
+  <%= erb :_footer %>
   <%= erb :_js %>
 </body>
 </html>
