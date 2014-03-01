@@ -3,3 +3,27 @@ section.content,
 footer {padding:2em 5%;}
 
 .site-header {padding:1em 5%;}
+
+.page-title {
+	text-align: center;
+	padding: 1em;
+}
+
+.survey-title {
+	font-size: 2em;
+}
+
+.user-survey-list li{
+	height: 200px;
+}
+
+.user-survey-list li a {
+	margin: 1em auto;
+	display: block;
+}
+
+.all-surveys, .options-list, #question-list {
+	list-style: none;
+	font-size: 1.4em;
+}
+

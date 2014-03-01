@@ -1,20 +1,24 @@
-<h1>Survey show (take survey)</h1>
+<h1 class="page-title">Survey show (take survey)</h1>
 
-<form action="/surveys/submit/<%= @survey.id %>" method="post">
-  <% @questions.each do |question| %>
-    <label><%= question.prompt %></label>
-    <% if question.variety == "multi" %>
-      <select class="question_select" id="<%=question.id%>" name ="survey[<%=question.id%>]">
-        <% question.options.each do |opt| %>
-          <option value="#<%=opt.content%>"><%=opt.content%></option>
-          <%end%>
-      </select>      
+<div class="row">
+  <div class="large-6 large-offset-3 column">
+    <form action="/surveys/submit/<%= @survey.id %>" method="post">
+      <% @questions.each do |question| %>
+        <label><%= question.prompt %></label>
+        <% if question.variety == "multi" %>
+          <select class="question_select" id="<%=question.id%>" name ="survey[<%=question.id%>]">
+            <% question.options.each do |opt| %>
+              <option value="#<%=opt.content%>"><%=opt.content%></option>
+              <%end%>
+          </select>      
 
-    <% else %>
+        <% else %>
 
-      <input class="question_input" type="text" id ="<%=question.id%>" name ="survey[<%=question.id%>]" >
+          <input class="question_input" type="text" id ="<%=question.id%>" name ="survey[<%=question.id%>]" >
 
-    <% end %>
-  <% end %>
-  <input type="submit" id="survey_submit">
-</form>
+        <% end %>
+      <% end %>
+      <input type="submit" id="survey_submit" class="button" value="Send">
+    </form>
+  </div>
+</div>

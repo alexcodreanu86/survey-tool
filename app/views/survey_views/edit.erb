@@ -1,21 +1,24 @@
 <a href="/user/<%= current_user.id %>" class="button">Back</a>
 
-<h1><%= @survey.title %></h1>
-<form action="/surveys/edit/<%= @survey.id %>" method="post">
-  <label for="title">Title: </label>
-  <input type="text" id="title" name="survey[title]" value="<%= @survey.title%>">
+<h1 class="page-title"><%= @survey.title %></h1>
+<div class="row">
+  <div class="large-6 large-offset-3 column">
+    <form action="/surveys/edit/<%= @survey.id %>" method="post">
+      <label for="title">Title: </label>
+      <input type="text" id="title" name="survey[title]" value="<%= @survey.title%>">
 
-  <select id="category" name="survey[category]">
-    <option value="Customer Satisfaction" <%= selected("Customer Satisfaction") %>>Customer Satisfaction</option>
-    <option value="Product" <%= selected("Product") %>>Product</option>
-    <option value="Course" <%= selected("Course") %>>Course</option>
-    <option value="Political" <%= selected("Political") %>>Political</option>
-    <option value="Other" <%= selected("Other") %>>Other</option>
-  </select>
-  <input type="submit" id="survey_submit" value="Edit Survey">
+      <select id="category" name="survey[category]">
+        <option value="Customer Satisfaction" <%= selected("Customer Satisfaction") %>>Customer Satisfaction</option>
+        <option value="Product" <%= selected("Product") %>>Product</option>
+        <option value="Course" <%= selected("Course") %>>Course</option>
+        <option value="Political" <%= selected("Political") %>>Political</option>
+        <option value="Other" <%= selected("Other") %>>Other</option>
+      </select>
+      <input type="submit" id="survey_submit" value="Edit Survey">
 
-</form>
-
+    </form>
+  </div>
+</div>
 
 <a id="new-question" class="button" href="/question/new_text/<%= @survey.id %>">Add text question</a>
 <a id="new-question" class="button" href="/question/new_multi/<%= @survey.id %>">Add multiple choice</a>
