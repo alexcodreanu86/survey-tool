@@ -1,4 +1,8 @@
-<form action="/question/add_option/<%= @question.id %>" method="post">
-  <input type="text" placeholder="Choice" name="content">
-  <input type="submit" value="Add">
-</form>
+<div class="row">
+  <div class="large-6 column">
+		<form action="/question/add_option/<%= @question.id %>" method="post">
+		  <input type="text" placeholder="Choice" name="content">
+		  <input type="submit" value="Add" class="button">
+		</form>
+	</div>
+</div>

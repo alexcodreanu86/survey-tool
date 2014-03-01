@@ -1,9 +1,14 @@
-<ul>
+<h1 calss="page-title">All Surveys</h1>
+
+<ul class="all-surveys">
   <% @surveys.each do |survey| %>
+    <% if survey.title == "Title" %>
+    <% else %>
       <% if has_taken_survey?(survey) %>
         <li><%= survey.title %>  (already participated)</li>
       <% else %>
         <li><a href="/surveys/participate/<%= survey.id %>"><%= survey.title %></a></li> 
       <% end %>
+    <% end %>
   <% end %>
 </ul>
