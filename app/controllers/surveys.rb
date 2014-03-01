@@ -33,7 +33,6 @@ get '/surveys/new' do
   redirect to "/" if !current_user?
   @survey = Survey.create(user_id: session[:user_id], title: "Title", category: params[:category])
   redirect to("/surveys/edit/#{@survey.id}")
-
 end
 
 post '/surveys/delete' do

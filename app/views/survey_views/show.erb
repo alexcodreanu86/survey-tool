@@ -3,7 +3,18 @@
 <form action="/surveys/submit/<%= @survey.id %>" method="post">
   <% @questions.each do |question| %>
     <label><%= question.prompt %></label>
-    <input class="question_input" type="text" id ="<%=question.id%>" name ="survey[<%=question.id%>]" >
+    <% if question.variety == "multi" %>
+      <select class="question_select" id="<%=question.id%>" name ="survey[<%=question.id%>]">
+        <% question.options.each do |opt| %>
+          <option value="#<%=opt.content%>"><%=opt.content%></option>
+          <%end%>
+      </select>      
+
+    <% else %>
+
+      <input class="question_input" type="text" id ="<%=question.id%>" name ="survey[<%=question.id%>]" >
+
+    <% end %>
   <% end %>
   <input type="submit" id="survey_submit">
 </form>
