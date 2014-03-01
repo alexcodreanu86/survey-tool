@@ -1,9 +1,18 @@
-get '/question/new/:survey_id' do
-	
+get '/question/new_text/:survey_id' do
   if request.xhr?
     erb :"question_views/forms/_text_question", layout: false
   else
+    @text = true
   	erb :"question_views/new"
+  end
+end
+
+get "/question/new_multi/:survey_id" do
+  if request.xhr?
+    erb :"question_views/forms/_multi_question", layout: false
+  else
+    @multi = true
+    erb :"question_views/new"
   end
 end
 

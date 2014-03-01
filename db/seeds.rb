@@ -35,3 +35,18 @@ Question.create(survey_id: 5, variety: "multi", prompt: "Favorite Cohort")
 Question.create(survey_id: 5, variety: "text", prompt: "Scariest Stuffed Animal")
 Question.create(survey_id: 5, variety: "multi", prompt: "Is the Yoga Room Hot?")
 Question.create(survey_id: 5, variety: "text", prompt: "Where is the beef?")
+
+
+Option.create(question_id: 3, content: "Alex's Snake")
+Option.create(question_id: 3, content: "Some Other Lame Snake")
+
+Option.create(question_id: 8, content: "Lunch")
+Option.create(question_id: 8, content: "Supper")
+
+Option.create(question_id: 20, content: "Foxes")
+Option.create(question_id: 20, content: "Otters")
+Option.create(question_id: 20, content: "Squzerals")
+Option.create(question_id: 20, content: "Other Lame Cohort")
+
+Option.create(question_id: 22, content: "No it is A freezing Ice Palace")
+Option.create(question_id: 22, content: "Hotter than the fires of 100 Super Novas")
