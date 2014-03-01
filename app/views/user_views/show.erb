@@ -4,9 +4,12 @@
 
 <ul class="large-block-grid-5 user-survey-list">
   <% @surveys.each do |survey| %>
-    <li><span class="survey-title"><%= survey.title %></span><br> 
+    <li><span class="survey-title"><%= survey.title %></span><br>
     	<a class="button" href="/surveys/edit/<%= survey.id %>">Edit</a><br>
-    	<a class="button alert" href="/surveys/delete/<%= survey.id %>">Delete</a>
+    	<a class="button alert" href="/surveys/delete/<%= survey.id %>">Delete</a><br>
+      <a class="button" href="/surveys/stats/<%= survey.id %>">Survey Stats</a>
     </li>
   <% end %>
 </ul>
+
+
