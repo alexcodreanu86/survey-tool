@@ -11,14 +11,16 @@ footer {padding:2em 5%;}
 
 .survey-title {
 	font-size: 2em;
+	text-align: center;
+	display: block;
 }
 
 .user-survey-list li{
-	height: 200px;
+	min-height: 200px;
 }
 
 .user-survey-list li a {
-	margin: 1em auto;
+	margin: 0.1em auto;
 	display: block;
 }
 

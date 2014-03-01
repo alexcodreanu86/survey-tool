@@ -35,6 +35,16 @@ get '/surveys/new' do
   redirect to("/surveys/edit/#{@survey.id}")
 end
 
+get '/surveys/delete/:survey_id' do
+  @survey = Survey.find(params[:survey_id])
+  if session[:user_id] == @survey.user_id
+    @survey.destroy
+    redirect to("/user/#{session[:user_id]}")
+  else 
+    redirect to('/')
+  end
+end
+
 post '/surveys/delete' do
   @survey = Survey.find(params[:survey_id])
   if session[:user_id] == @survey.user_id
